@@ -34,19 +34,20 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="<"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/less_light_pink"
-                android:background=""
                 android:id="@+id/prev_month_btn"
-                android:layout_height="wrap_content"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="@string/prev"
+                android:textColor="@color/less_light_pink"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:id="@+id/dateTextView"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:text="12月 2025年"
@@ -57,11 +58,11 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text=">"
+                android:text="@string/next"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/less_light_pink"
-                android:background=""
+                android:background="@android:color/transparent"
                 android:id="@+id/next_month_btn"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -69,10 +70,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal"
-        android:paddingHorizontal="20dp"
-        android:layout_marginTop="40dp">
+        android:paddingHorizontal="20dp">
 
         <TextView
             android:layout_width="0dp"
@@ -80,60 +81,66 @@
             android:layout_weight="1"
             android:text="月"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="火"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="水"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="木"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="金"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="土"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="日"
             android:textAlignment="center"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/light_pink" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendar_day_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/calendar_day_view"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
