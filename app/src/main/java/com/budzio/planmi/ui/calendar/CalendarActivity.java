@@ -3,6 +3,7 @@ package com.budzio.planmi.ui.calendar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.budzio.planmi.R;
 import com.budzio.planmi.ui.main.MainActivity;
 
+import java.io.Console;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +42,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
         chosenDate = LocalDate.now();
         createDateStuff();
+        setMonthView();
 
         // Buttons to control months
         Button nextMonthBtn = findViewById(R.id.next_month_btn);
@@ -83,18 +86,29 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
         // Check which day of week is the first month
         LocalDate firstDay = chosenDate.withDayOfMonth(1);
-        int dayOfWeek = firstDay.getDayOfWeek().getValue();
+        int dayOfWeek = firstDay.getDayOfWeek().getValue() - 1;  // Had to add -1 for it to work?? Ig 0 = Mon, 6 = Sun
+
+        YearMonth prevMonth = yearMonth.minusMonths(1);
+        int prevMonthLength = prevMonth.lengthOfMonth();
 
         // Iterate through number of days and add proper look for this month
         for (int i = 1; i <= 42; i++) {  // 42 - cause calendar has dimension 7x6 = 42 cells
             // Padding days, so previous/next month
-            if (i <= dayOfWeek || i > daysNum + dayOfWeek) {
-                days.add("");
-                continue;
-            }
 
+            // Add previous month days
+            if (i <= dayOfWeek) {
+                int day = prevMonthLength - (dayOfWeek - i);
+                days.add(String.valueOf(day));
+            }
+            // Add next month days
+            else if (i > daysNum + dayOfWeek) {
+                int day = i - (daysNum + dayOfWeek);
+                days.add(String.valueOf(day));
+            }
             // Otherwise add a normal day
-            days.add(String.valueOf(i - dayOfWeek));
+            else {
+                days.add(String.valueOf(i - dayOfWeek));
+            }
         }
 
         return days;

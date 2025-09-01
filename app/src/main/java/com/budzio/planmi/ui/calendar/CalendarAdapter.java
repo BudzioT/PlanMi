@@ -51,5 +51,5 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
     public int getItemCount() {
         return daysInMonth.size();
     }
-    // TODO: Fix clicking on cell, add other calendars, fix days not showing up when opening at the current month
+    // TODO: Fix clicking on cell, add other calendars
 }
