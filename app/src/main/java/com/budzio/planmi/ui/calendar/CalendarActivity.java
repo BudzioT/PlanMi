@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
     // Grid for days
@@ -67,7 +68,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         dateText.setText(formatDate(chosenDate));
 
         // Generate days in current month
-        ArrayList<String> daysInMonth = daysInMonth(chosenDate);
+        ArrayList<CalendarDay> daysInMonth = daysInMonth(chosenDate);
 
         // Create grid with days based on month, make it have 7 rows and just slap it as active
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
@@ -77,8 +78,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     }
 
     // Return how days in certain month should be shown
-    private ArrayList<String> daysInMonth(LocalDate date) {
-        ArrayList<String> days = new ArrayList<>();
+    private ArrayList<CalendarDay> daysInMonth(LocalDate date) {
+        ArrayList<CalendarDay> days = new ArrayList<>();
 
         // Grab num of days in current month
         YearMonth yearMonth = YearMonth.from(date);
@@ -98,16 +99,22 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
             // Add previous month days
             if (i <= dayOfWeek) {
                 int day = prevMonthLength - (dayOfWeek - i);
-                days.add(String.valueOf(day));
+                days.add(new CalendarDay(String.valueOf(day), false, false));
             }
             // Add next month days
             else if (i > daysNum + dayOfWeek) {
                 int day = i - (daysNum + dayOfWeek);
-                days.add(String.valueOf(day));
+                days.add(new CalendarDay(String.valueOf(day), false, false));
             }
             // Otherwise add a normal day
             else {
-                days.add(String.valueOf(i - dayOfWeek));
+                // Check if this day is today
+                Calendar today = Calendar.getInstance();
+                boolean isToday = (i - dayOfWeek) == chosenDate.getDayOfMonth() &&
+                        chosenDate.getMonthValue() - 1 == (int)today.get(Calendar.MONTH) &&
+                        chosenDate.getYear() == today.get(Calendar.YEAR);
+
+                days.add(new CalendarDay(String.valueOf(i - dayOfWeek), true, isToday));
             }
         }
 
@@ -140,13 +147,14 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         setMonthView();
     }
 
+    // Handle clicking day
     @Override
     public void onItemClick(int position, String dayNumber) {
-        if (!dayNumber.isEmpty()) {
+        if (dayNumber.isEmpty()) {
             return;
         }
 
-        String alert = "Selected " + dateText + " " + formatDate(chosenDate);
-        Toast.makeText(this, alert, Toast.LENGTH_LONG).show();
+        String alert = "Selected  " + dayNumber + "日 " + formatDate(chosenDate);
+        Toast.makeText(this, alert, Toast.LENGTH_SHORT).show();
     }
 }

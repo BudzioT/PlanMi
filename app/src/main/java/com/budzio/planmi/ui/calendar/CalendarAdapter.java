@@ -1,5 +1,6 @@
 package com.budzio.planmi.ui.calendar;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.budzio.planmi.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 // Grid for days
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
-    private final ArrayList<String> daysInMonth;
+    private final ArrayList<CalendarDay> daysInMonth;
     private final OnItemListener onItemListener;
 
     // You can click the cell, wow!
@@ -21,7 +23,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
         void onItemClick(int position, String dayNumber);
     }
 
-    public CalendarAdapter(ArrayList<String> daysInMonth, OnItemListener onItemListener) {
+    public CalendarAdapter(ArrayList<CalendarDay> daysInMonth, OnItemListener onItemListener) {
         this.daysInMonth = daysInMonth;
         this.onItemListener = onItemListener;
     }
@@ -41,15 +43,34 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
         return new CalendarView(view, onItemListener);
     }
 
-    // Put the day number in cell
+    // Put the day number in cell and do fancy styling for each day if it needs to be dynamic
     @Override
     public void onBindViewHolder(@NonNull CalendarView holder, int position) {
-        holder.day.setText(daysInMonth.get(position));
+        CalendarDay day = daysInMonth.get(position);
+
+        // If it's today - make a border
+        if (day.isCurrentDay) {
+            holder.day.setBackgroundResource(R.drawable.pink_circle);
+            holder.day.setTextColor(Color.WHITE);
+        }
+        else {
+            holder.day.setBackground(null);
+        }
+
+        // Set day number & make different colors for previous/next month days vs current month ones
+        holder.day.setText(day.dayText);
+        if (day.isCurrentMonth) {
+            holder.day.setTextColor(holder.itemView.getContext().getColor(R.color.active_day));
+        }
+        else {
+            holder.day.setTextColor(holder.itemView.getContext().getColor(R.color.inactive_day));
+        }
     }
 
     @Override
     public int getItemCount() {
         return daysInMonth.size();
     }
-    // TODO: Fix clicking on cell, add other calendars
+
+    // TODO: Add other calendars
 }

@@ -7,4 +7,8 @@
     <color name="white_pink">#F5F1F8</color>
     <color name="light_pink">#FF8FEE</color>
     <color name="less_light_pink">#F263DC</color>
+
+    <color name="active_day">#FF000000</color>
+    <color name="inactive_day">#CCCCCC</color>
+    <color name="today">#FF8FEE</color>
 </resources>

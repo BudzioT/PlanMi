@@ -17,14 +17,41 @@
             android:id="@+id/calendar_back_btn"
             android:src="?attr/actionModeCloseDrawable" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Monthly"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black" />
+            android:orientation="horizontal"
+            android:paddingHorizontal="70dp">
 
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/prev"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Monthly"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/next"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
