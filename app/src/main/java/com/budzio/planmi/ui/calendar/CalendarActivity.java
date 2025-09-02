@@ -1,5 +1,8 @@
 package com.budzio.planmi.ui.calendar;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +29,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
     // Grid for days
@@ -34,6 +38,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     private TextView dateText;
     // Current date
     private LocalDate chosenDate;
+    private String calendar_type;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,19 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         chosenDate = LocalDate.now();
         createDateStuff();
         setMonthView();
+
+        // TODO: Add ways to change calendars, make the inactive ones gray, and ofc build them
+        // Calendar type stuff
+        changeCalendarType("Monthly");
+
+        // Calendar type buttons
+        TextView dailyTypeBtn = findViewById(R.id.daily_calendar_btn);
+        TextView weeklyTypeBtn = findViewById(R.id.weekly_calendar_btn);
+        TextView monthlyTypeBtn = findViewById(R.id.monthly_calendar_btn);
+        dailyTypeBtn.setOnClickListener(this::changeToDailyType);
+        weeklyTypeBtn.setOnClickListener(this::changeToWeeklyType);
+        monthlyTypeBtn.setOnClickListener(this::changeToMonthlyType);
+
 
         // Buttons to control months
         Button nextMonthBtn = findViewById(R.id.next_month_btn);
@@ -61,11 +80,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         // Just find grid and date label by IDs
         calendarRecView = findViewById(R.id.calendar_day_view);
         dateText = findViewById(R.id.dateTextView);
+        calendar_type = "Monthly";
     }
 
     // Just update the month/year with chosen date
     private void setMonthView() {
-        dateText.setText(formatDate(chosenDate));
+        dateText.setText(formatDateMonthly(chosenDate));
 
         // Generate days in current month
         ArrayList<CalendarDay> daysInMonth = daysInMonth(chosenDate);
@@ -122,7 +142,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     }
 
     // Format the date to fancy style
-    private String formatDate(LocalDate date) {
+    private String formatDateMonthly(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM月 yyyy年");
         return date.format(formatter);
     }
@@ -154,7 +174,55 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
             return;
         }
 
-        String alert = "Selected  " + dayNumber + "日 " + formatDate(chosenDate);
+        String alert = "Selected  " + dayNumber + "日 " + formatDateMonthly(chosenDate);
         Toast.makeText(this, alert, Toast.LENGTH_SHORT).show();
+    }
+
+    // Change the layout and everything needed to see calendar in a different format
+    private void changeCalendarType(String type) {
+        this.calendar_type = type;
+
+        TextView dailyType = findViewById(R.id.daily_calendar_btn);
+        TextView weeklyType = findViewById(R.id.weekly_calendar_btn);
+        TextView monthlyType = findViewById(R.id.monthly_calendar_btn);
+
+        RecyclerView monthlyDayView = findViewById(R.id.calendar_day_view);
+
+        // Indicate which category is active by using different colors of font
+        switch (calendar_type) {
+            case "Daily":
+                dailyType.setTextColor(getColor(R.color.active_day));
+                weeklyType.setTextColor(getColor(R.color.inactive_day));
+                monthlyType.setTextColor(getColor(R.color.inactive_day));
+                break;
+
+            case "Weekly":
+                weeklyType.setTextColor(getColor(R.color.active_day));
+                dailyType.setTextColor(getColor(R.color.inactive_day));
+                monthlyType.setTextColor(getColor(R.color.inactive_day));
+
+                monthlyDayView.setVisibility(GONE);
+                break;
+
+            case "Monthly":
+                monthlyType.setTextColor(getColor(R.color.active_day));
+                dailyType.setTextColor(getColor(R.color.inactive_day));
+                weeklyType.setTextColor(getColor(R.color.inactive_day));
+
+                monthlyDayView.setVisibility(VISIBLE);
+                break;
+        }
+    }
+
+    private void changeToDailyType(View view) {
+        changeCalendarType("Daily");
+    }
+
+    private void changeToWeeklyType(View view) {
+        changeCalendarType("Weekly");
+    }
+
+    private void changeToMonthlyType(View view) {
+        changeCalendarType("Monthly");
     }
 }

@@ -23,34 +23,38 @@
             android:orientation="horizontal"
             android:paddingHorizontal="70dp">
 
-            <Button
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/prev"
+                android:id="@+id/daily_calendar_btn"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Daily"
+                android:clickable="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent"
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Monthly"
+                android:clickable="true"
+                android:id="@+id/weekly_calendar_btn"
+                android:text="Weekly"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/black" />
 
-            <Button
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/next"
+                android:layout_height="match_parent"
+                android:id="@+id/monthly_calendar_btn"
+                android:gravity="center"
+                android:clickable="true"
+                android:text="Monthly"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent"
-                />
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
