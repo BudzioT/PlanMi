@@ -32,7 +32,7 @@
                 android:text="Daily"
                 android:clickable="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black" />
+                android:textColor="@color/inactive_day" />
 
             <TextView
                 android:layout_width="0dp"
@@ -43,7 +43,7 @@
                 android:id="@+id/weekly_calendar_btn"
                 android:text="Weekly"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black" />
+                android:textColor="@color/inactive_day" />
 
             <TextView
                 android:layout_width="0dp"

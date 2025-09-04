@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:id="@+id/dateTextView"
+            android:id="@+id/dayTextView"
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="10日 12月 2025年"
@@ -47,7 +47,7 @@
             android:textStyle="bold"
             android:textColor="@color/less_light_pink"
             android:background="@android:color/transparent"
-            android:id="@+id/next_month_btn"
+            android:id="@+id/next_day_btn"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
