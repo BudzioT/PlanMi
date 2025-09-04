@@ -191,7 +191,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         RecyclerView monthlyDayView = findViewById(R.id.calendar_day_view);
 
         // Indicate which category is active by using different colors of font
-        switch (calendar_type) {
+        switch (type) {
             case "Daily":
                 dailyType.setTextColor(getColor(R.color.active_day));
                 weeklyType.setTextColor(getColor(R.color.inactive_day));
@@ -205,15 +205,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
                 dailyType.setTextColor(getColor(R.color.inactive_day));
                 monthlyType.setTextColor(getColor(R.color.inactive_day));
 
-                monthlyDayView.setVisibility(GONE);
+                goToWeeklyView();
                 break;
 
             case "Monthly":
                 monthlyType.setTextColor(getColor(R.color.active_day));
                 dailyType.setTextColor(getColor(R.color.inactive_day));
                 weeklyType.setTextColor(getColor(R.color.inactive_day));
-
-                monthlyDayView.setVisibility(VISIBLE);
                 break;
         }
     }
@@ -232,6 +230,12 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
     // Change view to the daily one, with all the tasks etc.
     private void goToDailyView() {
+        Intent intent = new Intent(CalendarActivity.this, CalendarDailyView.class);
+        startActivity(intent);
+    }
 
+    private void goToWeeklyView() {
+        Intent intent = new Intent(CalendarActivity.this, CalendarWeeklyActivity.class);
+        startActivity(intent);
     }
 }

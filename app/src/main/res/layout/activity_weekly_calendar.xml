@@ -1,173 +1,458 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_pink"
-    android:orientation="vertical">
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Go Back"
-        android:id="@+id/calendar_weekly_back_btn"
-        android:src="?attr/actionModeCloseDrawable" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="70dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:id="@+id/daily_calendar_btn"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Daily"
-                android:clickable="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/inactive_day" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:clickable="true"
-                android:id="@+id/weekly_calendar_btn"
-                android:text="Weekly"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/active_day" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:id="@+id/monthly_calendar_btn"
-                android:gravity="center"
-                android:clickable="true"
-                android:text="Monthly"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/inactive_day" />
-        </LinearLayout>
-
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-            android:layout_marginTop="30dp">
-
-        <Button
-            android:id="@+id/prev_week_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:background="@android:color/transparent"
-            android:text="@string/prev"
-            android:textColor="@color/less_light_pink"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="2"
-            android:id="@+id/dateTextView"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:text="20日 12月  —  27日 12月 2025年"
-            android:textSize="22sp"
-            android:textColor="@color/light_pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:text="@string/next"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/less_light_pink"
-            android:background="@android:color/transparent"
-            android:id="@+id/next_week_btn"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
-    </LinearLayout>
-
+    android:background="@color/white_pink">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Go Back"
+            android:id="@+id/calendar_back_btn"
+            android:src="?attr/actionModeCloseDrawable" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="月"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingHorizontal="70dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/daily_calendar_btn"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Daily"
+                    android:clickable="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/inactive_day" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:id="@+id/weekly_calendar_btn"
+                    android:text="Weekly"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/active_day" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:id="@+id/monthly_calendar_btn"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:text="Monthly"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/inactive_day" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="火"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="水"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="木"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="金"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="土"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="日"
-                android:layout_marginTop="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/light_pink" />
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
+
+                <Button
+                    android:id="@+id/prev_week_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@android:color/transparent"
+                    android:text="@string/prev"
+                    android:textColor="@color/less_light_pink"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:id="@+id/dateTextView"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content"
+                    android:text="3週 12月 2025年"
+                    android:textSize="22sp"
+                    android:textColor="@color/light_pink"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:text="@string/next"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/less_light_pink"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/next_week_btn"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="20dp"
+                android:paddingStart="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="21"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="23"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="24"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="25"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="26"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="27"
+                    android:textAlignment="center"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingEnd="20dp"
+                android:paddingStart="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="月"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="火"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="水"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="木"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="金"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="土"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="日"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/light_pink" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="8"
+            android:rowCount="25"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:layout_row="0"
+                android:layout_column="0"
+                android:text="0:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:text="1:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="2"
+                android:layout_column="0"
+                android:text="2:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="3"
+                android:layout_column="0"
+                android:text="3:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="4"
+                android:layout_column="0"
+                android:text="4:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="5"
+                android:layout_column="0"
+                android:text="5:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="6"
+                android:layout_column="0"
+                android:text="6:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="7"
+                android:layout_column="0"
+                android:text="7:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="8"
+                android:layout_column="0"
+                android:text="8:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="9"
+                android:layout_column="0"
+                android:text="9:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="10"
+                android:layout_column="0"
+                android:text="10:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="11"
+                android:layout_column="0"
+                android:text="11:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="12"
+                android:layout_column="0"
+                android:text="12:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="13"
+                android:layout_column="0"
+                android:text="13:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="14"
+                android:layout_column="0"
+                android:text="14:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="15"
+                android:layout_column="0"
+                android:text="15:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="16"
+                android:layout_column="0"
+                android:text="16:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="17"
+                android:layout_column="0"
+                android:text="17:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="18"
+                android:layout_column="0"
+                android:text="18:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="19"
+                android:layout_column="0"
+                android:text="19:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="20"
+                android:layout_column="0"
+                android:text="20:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="21"
+                android:layout_column="0"
+                android:text="21:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="22"
+                android:layout_column="0"
+                android:text="22:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="23"
+                android:layout_column="0"
+                android:text="23:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            <TextView
+                android:layout_row="24"
+                android:layout_column="0"
+                android:text="24:00"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/purple"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        </GridLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

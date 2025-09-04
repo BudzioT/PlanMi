@@ -64,14 +64,15 @@
             android:layout_gravity="center_horizontal"
             android:text="TaskList"
             android:textColor="@color/less_light_pink"
-            android:id="@+id/task_list_label"
+            android:id="@+id/tasklist_label"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/daily_tasklist">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -89,7 +90,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/daily_plans_list">
 
         </androidx.recyclerview.widget.RecyclerView>
 
