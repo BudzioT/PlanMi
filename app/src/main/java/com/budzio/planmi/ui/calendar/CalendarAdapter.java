@@ -72,5 +72,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarView> {
         return daysInMonth.size();
     }
 
-    // TODO: Add other calendars
+    // TODO: Add other calendars, ways to change em,
+    //  CHANGE LAYOUT OF DAILY STUFF - make tabs (tasks, plans, notes) instead of list, also a way to go to the daily view and back from it (in progress)
 }

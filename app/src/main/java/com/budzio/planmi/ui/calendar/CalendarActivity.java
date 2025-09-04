@@ -38,6 +38,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     private TextView dateText;
     // Current date
     private LocalDate chosenDate;
+    private int selectedDayNum;
     private String calendar_type;
 
 
@@ -51,7 +52,6 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         createDateStuff();
         setMonthView();
 
-        // TODO: Add ways to change calendars, make the inactive ones gray, and ofc build them
         // Calendar type stuff
         changeCalendarType("Monthly");
 
@@ -175,6 +175,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         }
 
         String alert = "Selected  " + dayNumber + "日 " + formatDateMonthly(chosenDate);
+
+
         Toast.makeText(this, alert, Toast.LENGTH_SHORT).show();
     }
 
@@ -194,6 +196,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
                 dailyType.setTextColor(getColor(R.color.active_day));
                 weeklyType.setTextColor(getColor(R.color.inactive_day));
                 monthlyType.setTextColor(getColor(R.color.inactive_day));
+
+                goToDailyView();
                 break;
 
             case "Weekly":
@@ -224,5 +228,10 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
     private void changeToMonthlyType(View view) {
         changeCalendarType("Monthly");
+    }
+
+    // Change view to the daily one, with all the tasks etc.
+    private void goToDailyView() {
+
     }
 }

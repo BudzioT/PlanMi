@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="TaskList"
+            android:textColor="@color/less_light_pink"
             android:id="@+id/task_list_label"
             android:textAlignment="center"
             android:textAllCaps="false"
@@ -79,20 +80,53 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Plans"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/less_light_pink"
             android:id="@+id/plans_label"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notes"
+            android:layout_marginTop="20dp"
+            android:id="@+id/notes_label"
+            android:textAlignment="center"
+            android:textColor="@color/less_light_pink"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:id="@+id/note_holder">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="00:00"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="adadadada adadadadadada"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
