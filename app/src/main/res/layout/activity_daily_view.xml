@@ -69,12 +69,20 @@
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily_tasklist">
+            android:layout_height="wrap_content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <!--
+            <include
+                layout="@layout/task_daily" />
+            -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/daily_tasklist" />
+        </ScrollView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,12 +96,278 @@
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily_plans_list">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:columnCount="27"
+                android:rowCount="8"
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:text="0"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="1"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="2"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="3"
+                    android:layout_row="0"
+                    android:layout_column="3"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="4"
+                    android:layout_row="0"
+                    android:layout_column="4"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="5"
+                    android:layout_row="0"
+                    android:layout_column="5"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="6"
+                    android:layout_row="0"
+                    android:layout_column="6"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="7"
+                    android:layout_row="0"
+                    android:layout_column="7"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="8"
+                    android:layout_row="0"
+                    android:layout_column="8"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="9"
+                    android:layout_row="0"
+                    android:layout_column="9"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="10"
+                    android:layout_row="0"
+                    android:layout_column="10"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="11"
+                    android:layout_row="0"
+                    android:layout_column="11"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="12"
+                    android:layout_row="0"
+                    android:layout_column="12"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="13"
+                    android:layout_row="0"
+                    android:layout_column="13"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="14"
+                    android:layout_row="0"
+                    android:layout_column="14"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="15"
+                    android:layout_row="0"
+                    android:layout_column="15"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="16"
+                    android:layout_row="0"
+                    android:layout_column="16"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="17"
+                    android:layout_row="0"
+                    android:layout_column="17"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="18"
+                    android:layout_row="0"
+                    android:layout_column="18"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="19"
+                    android:layout_row="0"
+                    android:layout_column="19"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="20"
+                    android:layout_row="0"
+                    android:layout_column="20"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="21"
+                    android:layout_row="0"
+                    android:layout_column="21"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="22"
+                    android:layout_row="0"
+                    android:layout_column="22"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="23"
+                    android:layout_row="0"
+                    android:layout_column="23"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+                <TextView
+                    android:text="24"
+                    android:layout_row="0"
+                    android:layout_column="24"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple" />
+
+                <include layout="@layout/cell_weekly_activity"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="9"
+                    android:layout_columnSpan="2" />
+            </GridLayout>
+        </HorizontalScrollView>
+
 
         <TextView
             android:layout_width="match_parent"
