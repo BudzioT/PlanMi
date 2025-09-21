@@ -359,13 +359,6 @@
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/purple" />
-
-                <include layout="@layout/cell_weekly_activity"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="9"
-                    android:layout_columnSpan="2" />
             </GridLayout>
         </HorizontalScrollView>
 

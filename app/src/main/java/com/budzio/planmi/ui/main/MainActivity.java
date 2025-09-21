@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        TaskManager.getInstance().initialize(this);
+
         taskContainer = findViewById(R.id.main_task_container);
         loadCloseTasks();
 

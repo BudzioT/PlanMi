@@ -1,5 +1,12 @@
 package com.budzio.planmi.data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +15,18 @@ import java.util.stream.Collectors;
 public class TaskManager {
     private static TaskManager instance;
     private final List<Task> tasks;
+    private Context context;
+
+    private static final String PREF_NAME = "PlanMiPrefs";
+    private static final String TASKS_KEY = "tasks";
 
     private TaskManager() {
         tasks = new ArrayList<>();
+    }
+
+    public void initialize(Context context) {
+        this.context = context.getApplicationContext();
+        loadTasks();
     }
 
     public static TaskManager getInstance() {
@@ -23,10 +39,50 @@ public class TaskManager {
 
     public void addTask(Task task) {
         tasks.add(task);
+        saveTasks();
     }
 
     public void removeTask(Task task) {
         tasks.remove(task);
+        saveTasks();
+    }
+
+    public void saveTasks() {
+        if (context == null) return;
+
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        JSONArray jsonArray = new JSONArray();
+        for (Task task : tasks) {
+            try {
+                jsonArray.put(task.toJSON());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        editor.putString(TASKS_KEY, jsonArray.toString());
+        editor.apply();
+    }
+
+    private void loadTasks() {
+        if (context == null) return;
+
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        String tasksJson = prefs.getString(TASKS_KEY, "[]");
+
+        tasks.clear();
+        try {
+            JSONArray jsonArray = new JSONArray(tasksJson);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject taskJson = jsonArray.getJSONObject(i);
+                Task task = Task.fromJSON(taskJson);
+                tasks.add(task);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateTask(Task task) {
@@ -36,6 +92,8 @@ public class TaskManager {
                 break;
             }
         }
+
+        saveTasks();
     }
 
     public List<Task> getAllTasks() {

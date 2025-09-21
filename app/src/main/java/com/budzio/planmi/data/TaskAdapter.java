@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.budzio.planmi.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -35,13 +37,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = tasks.get(position);
-        holder.titleTextView.setText(task.getTitle());
-        holder.checkBox.setChecked(task.isCompleted());
-
-        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            task.setCompleted(isChecked);
-            TaskManager.getInstance().updateTask(task);
-        });
+        holder.bind(task);
     }
 
     @Override
@@ -60,17 +56,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
 
         public void bind(Task task) {
-            String displayText = task.getTitle();
-            if (task.isScheduled()) {
-                displayText += " (" + task.getTimeRange() + ")";
+            checkBox.setOnCheckedChangeListener(null);
+            checkBox.setChecked(task.isCompleted());
+            titleTextView.setText(task.getTitle());
+
+            if (task.isScheduled() && task.getStartTime() != null) {
+                String timeText = task.getStartTime().toString();
+                if (task.getEndTime() != null) {
+                    timeText += " - " + task.getEndTime().toString();
+                }
             }
 
-            titleTextView.setText(displayText);
-            checkBox.setChecked(task.isCompleted());
-            checkBox.setOnCheckedChangeListener(((buttonView, isChecked) -> {
+            checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 task.setCompleted(isChecked);
                 TaskManager.getInstance().updateTask(task);
-            }));
+            });
         }
     }
 }
