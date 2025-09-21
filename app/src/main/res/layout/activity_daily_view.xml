@@ -373,51 +373,62 @@
             android:textColor="@color/less_light_pink"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:id="@+id/note_holder">
+            android:layout_height="wrap_content">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="adadadada adadadadadada"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:id="@+id/note_holder">
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/note_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:hint="Write your notes here..."
+                    android:padding="8dp"
+                    android:scrollbars="vertical"
+                    android:maxLines="8"
+                    android:overScrollMode="always"
+                    android:textIsSelectable="true"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/add_note_image_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <ImageView
+                    android:layout_height="wrap_content"
+                    android:text="Add Photo"
+                    android:backgroundTint="@color/light_pink"
+                    android:textSize="10sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"/>
+                <Button
+                    android:id="@+id/save_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save Note"
+                    android:backgroundTint="@color/less_light_pink"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"/>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/note_images_recycler"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/test" />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/test"
-                        android:maxWidth="100dp"
-                        android:maxHeight="100dp"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/test"
-                        android:maxWidth="100dp"
-                        android:maxHeight="100dp"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/test"
-                        android:maxWidth="100dp"
-                        android:maxHeight="100dp"/>
-                </LinearLayout>
-            </HorizontalScrollView>
-        </LinearLayout>
+                        android:layout_height="100dp"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </LinearLayout>
+        </ScrollView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

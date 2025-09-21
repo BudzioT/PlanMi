@@ -1,12 +1,15 @@
 package com.budzio.planmi.ui.calendar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.budzio.planmi.R;
 import com.budzio.planmi.data.AddTaskDialog;
+import com.budzio.planmi.data.Note;
+import com.budzio.planmi.data.NoteImageAdapter;
 import com.budzio.planmi.data.Task;
 import com.budzio.planmi.data.TaskAdapter;
 import com.budzio.planmi.data.TaskManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -35,6 +41,18 @@ public class CalendarDailyView extends AppCompatActivity {
     private FloatingActionButton addTask;
     private RecyclerView dailyTaskList;
     private TaskAdapter taskAdapter;
+
+    // Note stuff
+    private TextInputEditText noteText;
+    private Button addNoteImageBtn, saveNoteBtn;
+    private RecyclerView noteImagesRecycler;
+    private NoteImageAdapter imagesAdapter;
+    private Note currentNote;
+    private LocalDate selectedDate;
+
+    private LinearLayout noteImageContainer;
+
+    private static final int PICK_IMAGE_REQUEST = 1001;
 
 
     @Override
@@ -64,6 +82,22 @@ public class CalendarDailyView extends AppCompatActivity {
         setupTaskRecyclerView();
         loadTasks();
 
+        // Note stuff again
+        noteText = findViewById(R.id.note_text);
+        addNoteImageBtn = findViewById(R.id.add_note_image_btn);
+        saveNoteBtn = findViewById(R.id.save_note);
+        noteImagesRecycler = findViewById(R.id.note_images_recycler);
+
+        selectedDate = chosenDate;
+        loadNote();
+
+        addNoteImageBtn.setOnClickListener(v -> pickImage());
+        saveNoteBtn.setOnClickListener(v -> saveNote());
+
+        noteText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) saveNote();
+        });
+
         Button nextDayBtn = findViewById(R.id.next_day_btn);
         Button prevDayBtn = findViewById(R.id.prev_day_btn);
         nextDayBtn.setOnClickListener(this::goToNextDay);
@@ -75,6 +109,12 @@ public class CalendarDailyView extends AppCompatActivity {
         menuBackBtn.setOnClickListener(this::goBackToMenu);
 
         setupCalendarTypeButtons();
+    }
+
+    private void pickImage() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
     private void setupCalendarTypeButtons() {
@@ -190,6 +230,36 @@ public class CalendarDailyView extends AppCompatActivity {
         grid.addView(taskView);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            if (imageUri != null) {
+                getContentResolver().takePersistableUriPermission(imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                currentNote.getImageUris().add(imageUri.toString());
+                imagesAdapter.notifyDataSetChanged();
+                saveNote();
+            }
+        }
+    }
+
+    private void loadNote() {
+        currentNote = TaskManager.getInstance().getNoteForDate(selectedDate);
+        noteText.setText(currentNote.getText());
+
+        imagesAdapter = new NoteImageAdapter(currentNote.getImageUris());
+        noteImagesRecycler.setAdapter(imagesAdapter);
+        noteImagesRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void saveNote() {
+        if (currentNote != null) {
+            currentNote.setText(noteText.getText().toString());
+            TaskManager.getInstance().saveNoteForDate(selectedDate, currentNote);
+        }
+    }
+
     private void goBackToMenu(View view) {
         Intent intent = new Intent(CalendarDailyView.this, CalendarActivity.class);
         startActivity(intent);
@@ -198,15 +268,21 @@ public class CalendarDailyView extends AppCompatActivity {
     }
 
     private void goToNextDay(View view) {
+        saveNote();
         chosenDate = chosenDate.plusDays(1);
+        selectedDate = chosenDate;
         updateDayView();
         loadTasks();
+        loadNote();
     }
 
     private void goToPrevDay(View view) {
+        saveNote();
         chosenDate = chosenDate.plusDays(-1);
+        selectedDate = chosenDate;
         updateDayView();
         loadTasks();
+        loadNote();
     }
 
     private void updateDayView() {

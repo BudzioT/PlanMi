@@ -8,8 +8,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TaskManager {
@@ -19,14 +23,20 @@ public class TaskManager {
 
     private static final String PREF_NAME = "PlanMiPrefs";
     private static final String TASKS_KEY = "tasks";
+    private static final String NOTES_KEY = "notes";
+
+
+    private Map<LocalDate, Note> notesMap = new HashMap<>();
 
     private TaskManager() {
+
         tasks = new ArrayList<>();
     }
 
     public void initialize(Context context) {
         this.context = context.getApplicationContext();
         loadTasks();
+        loadNotes();
     }
 
     public static TaskManager getInstance() {
@@ -36,6 +46,60 @@ public class TaskManager {
 
         return instance;
     }
+
+    public Note getNoteForDate(LocalDate date) {
+        if (!notesMap.containsKey(date)) notesMap.put(date, new Note());
+        return notesMap.get(date);
+    }
+
+    public void saveNoteForDate(LocalDate date, Note note) {
+        notesMap.put(date, note);
+        saveNotes();
+    }
+
+    private void saveNotes() {
+        if (context == null) return;
+
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        JSONObject notesJson = new JSONObject();
+        DateTimeFormatter fmt = DateTimeFormatter.ISO_LOCAL_DATE;
+
+        for (Map.Entry<LocalDate, Note> entry : notesMap.entrySet()) {
+            try {
+                notesJson.put(entry.getKey().format(fmt), entry.getValue().toJSON());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        editor.putString(NOTES_KEY, notesJson.toString());
+        editor.apply();
+    }
+
+    private void loadNotes() {
+        if (context == null) return;
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        String notesStr = prefs.getString(NOTES_KEY, "{}");
+        notesMap.clear();
+
+        try {
+            JSONObject notesJson = new JSONObject(notesStr);
+
+            Iterator<String> keys = notesJson.keys();
+
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONObject noteJson = notesJson.getJSONObject(key);
+                Note note = Note.fromJSON(noteJson);
+                notesMap.put(LocalDate.parse(key), note);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void addTask(Task task) {
         tasks.add(task);
