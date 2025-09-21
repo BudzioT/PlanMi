@@ -81,6 +81,7 @@ public class CalendarWeeklyActivity extends AppCompatActivity {
     private void showAddTaskDialog() {
         AddTaskDialog dialog = new AddTaskDialog(this, task -> {
             updateWeekView();
+            loadWeeklyTasks();
             Toast.makeText(this, "Task added successfully!", Toast.LENGTH_SHORT).show();
         });
         dialog.show();
@@ -309,11 +310,13 @@ public class CalendarWeeklyActivity extends AppCompatActivity {
     private void nextWeek(View view) {
         chosenDate = chosenDate.plusWeeks(1);
         updateWeekView();
+        loadWeeklyTasks();
     }
 
     private void previousWeek(View view) {
         chosenDate = chosenDate.minusWeeks(1);
         updateWeekView();
+        loadWeeklyTasks();
     }
 
     @SuppressLint("ResourceType")

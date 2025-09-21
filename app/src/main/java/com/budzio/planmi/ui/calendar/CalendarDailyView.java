@@ -2,8 +2,10 @@ package com.budzio.planmi.ui.calendar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,6 +107,88 @@ public class CalendarDailyView extends AppCompatActivity {
     private void loadTasks() {
         List<Task> tasks = TaskManager.getInstance().getTasksForDate(chosenDate);
         taskAdapter.updateTasks(tasks);
+
+        clearTaskViewsFromGrid();
+        addTasksToGrid(tasks);
+    }
+
+    private void clearTaskViewsFromGrid() {
+        GridLayout grid = findViewById(R.id.daily_task_grid);
+        if (grid == null) return;
+
+        List<View> viewsToRemove = new ArrayList<>();
+
+        for (int i = 0; i < grid.getChildCount(); i++) {
+            View child = grid.getChildAt(i);
+            if (child.getTag() != null && child.getTag().equals("task")) {
+                viewsToRemove.add(child);
+            }
+        }
+
+        for (View view : viewsToRemove) {
+            grid.removeView(view);
+        }
+    }
+
+    private void addTasksToGrid(List<Task> tasks) {
+        GridLayout grid = findViewById(R.id.daily_task_grid);
+        if (grid == null) return;
+
+        for (Task task : tasks) {
+            if (task.getStartTime() != null) {
+                addTaskToGrid(task, grid);
+            }
+        }
+    }
+
+    private void addTaskToGrid(Task task, GridLayout grid) {
+        if (task.getStartTime() == null || grid == null) {
+            return;
+        }
+
+        View taskView = LayoutInflater.from(this).inflate(R.layout.cell_weekly_activity, grid, false);
+
+        TextView titleView = taskView.findViewById(R.id.weekly_task_title);
+        TextView timeView = taskView.findViewById(R.id.weekly_task_time);
+
+        if (titleView != null) {
+            titleView.setText(task.getTitle());
+        }
+        taskView.setTag("task");
+
+        String timeText = "";
+        if (task.getStartTime() != null) {
+            timeText = task.getStartTime().toString();
+            if (task.getEndTime() != null) {
+                timeText += " - " + task.getEndTime().toString();
+            }
+        }
+        if (timeView != null) {
+            timeView.setText(timeText);
+        }
+
+        int startHour = task.getStartTime().getHour();
+        int columnSpan = 1;
+        if (task.getEndTime() != null) {
+            int duration = task.getEndTime().getHour() - startHour;
+            columnSpan = Math.max(1, duration);
+        }
+
+
+        int maxColumns = 25;
+        if (startHour + columnSpan > maxColumns) {
+            columnSpan = maxColumns - startHour;
+        }
+
+        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+        params.rowSpec = GridLayout.spec(1);
+        params.columnSpec = GridLayout.spec(startHour + 1, columnSpan);
+        params.width = 140 * columnSpan;
+        params.height = GridLayout.LayoutParams.WRAP_CONTENT;
+        params.setMargins(4, 4, 4, 4);
+
+        taskView.setLayoutParams(params);
+        grid.addView(taskView);
     }
 
     private void goBackToMenu(View view) {
@@ -117,11 +201,13 @@ public class CalendarDailyView extends AppCompatActivity {
     private void goToNextDay(View view) {
         chosenDate = chosenDate.plusDays(1);
         updateDayView();
+        loadTasks();
     }
 
     private void goToPrevDay(View view) {
         chosenDate = chosenDate.plusDays(-1);
         updateDayView();
+        loadTasks();
     }
 
     private void updateDayView() {

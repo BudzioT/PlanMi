@@ -104,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:columnCount="27"
+                android:id="@+id/daily_task_grid"
                 android:rowCount="8"
                 android:paddingHorizontal="20dp"
                 android:layout_marginBottom="30dp">

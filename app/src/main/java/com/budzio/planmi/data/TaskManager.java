@@ -67,8 +67,12 @@ public class TaskManager {
     public List<Task> getTasksForWeek(LocalDate startOfWeek) {
         LocalDate endOfWeek = startOfWeek.plusDays(6);
         return tasks.stream()
-                .filter(task -> !(task.getEndDate().isBefore(startOfWeek) ||
-                        task.getStartDate().isAfter(endOfWeek)))
+                .filter(task -> {
+                    LocalDate taskStart = task.getStartDate();
+                    LocalDate taskEnd = task.getEndDate() != null ? task.getEndDate() : taskStart;
+
+                    return !(taskEnd.isBefore(startOfWeek) || taskStart.isAfter(endOfWeek));
+                })
                 .collect(Collectors.toList());
     }
 }
