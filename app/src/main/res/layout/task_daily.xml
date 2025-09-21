@@ -7,13 +7,15 @@
 
     <CheckBox
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/task_checkbox"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Activity some name task"
         android:textSize="14sp"
+        android:id="@+id/task_title"
         android:textStyle="bold"
         android:ellipsize="end"
         android:textColor="@color/white" />

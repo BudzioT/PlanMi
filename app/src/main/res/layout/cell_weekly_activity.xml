@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Activity"
         android:textSize="14sp"
+        android:id="@+id/weekly_task_title"
         android:textStyle="bold"
         android:ellipsize="end"
         android:textColor="@color/white" />
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="09:00 - 11:00"
+        android:id="@+id/weekly_task_time"
         android:textSize="12sp"
         android:textColor="@color/white" />
 </LinearLayout>

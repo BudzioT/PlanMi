@@ -60,11 +60,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/rounded_scrollview">
-
-                <include layout="@layout/task_main" />
-                <include layout="@layout/task_main" />
-                <include layout="@layout/task_main" />
+                android:background="@drawable/rounded_scrollview"
+                android:id="@+id/main_task_container">
             </LinearLayout>
 
         </ScrollView>

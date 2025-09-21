@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Task"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_input_title"
+            android:hint="Task Title"
+            android:layout_marginBottom="20dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/is_scheduled_checkbox"
+        android:text="Schedule it for specific time"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_time_container"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Date"
+                android:id="@+id/start_date_btn"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/pink" />
+
+            <Button android:id="@+id/end_date_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="End Date"
+                android:layout_weight="1"
+                android:backgroundTint="@color/pink"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button android:id="@+id/start_time_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start Time"
+                android:backgroundTint="@color/light_pink"
+                android:layout_marginEnd="6dp" />
+
+            <Button android:id="@+id/end_time_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="End Time"
+                android:backgroundTint="@color/light_pink"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel_btn"
+            android:text="Cancel"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@color/less_light_pink"
+            android:layout_marginEnd="8dp"
+            android:layout_gravity="start"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save_btn"
+            android:text="Save"
+            android:backgroundTint="@color/pink"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+
+</LinearLayout>

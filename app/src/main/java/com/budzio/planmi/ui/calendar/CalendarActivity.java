@@ -174,10 +174,15 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
             return;
         }
 
+        // Why the heck is this called a toast btw
         String alert = "Selected  " + dayNumber + "日 " + formatDateMonthly(chosenDate);
-
-
         Toast.makeText(this, alert, Toast.LENGTH_SHORT).show();
+
+        LocalDate selectedDate = chosenDate.withDayOfMonth(Integer.parseInt(dayNumber));
+
+        Intent intent = new Intent(CalendarActivity.this, CalendarDailyView.class);
+        intent.putExtra("selectedDate", selectedDate.toString());
+        startActivity(intent);
     }
 
     // Change the layout and everything needed to see calendar in a different format
