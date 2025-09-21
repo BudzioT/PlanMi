@@ -170,10 +170,9 @@ public class CalendarDailyView extends AppCompatActivity {
         int startHour = task.getStartTime().getHour();
         int columnSpan = 1;
         if (task.getEndTime() != null) {
-            int duration = task.getEndTime().getHour() - startHour;
+            int duration = task.getEndTime().getHour() - startHour + 1;
             columnSpan = Math.max(1, duration);
         }
-
 
         int maxColumns = 25;
         if (startHour + columnSpan > maxColumns) {
@@ -182,8 +181,8 @@ public class CalendarDailyView extends AppCompatActivity {
 
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         params.rowSpec = GridLayout.spec(1);
-        params.columnSpec = GridLayout.spec(startHour + 1, columnSpan);
-        params.width = 140 * columnSpan;
+        params.columnSpec = GridLayout.spec(startHour, columnSpan);
+        params.width = (int) (70 * columnSpan * getResources().getDisplayMetrics().density);
         params.height = GridLayout.LayoutParams.WRAP_CONTENT;
         params.setMargins(4, 4, 4, 4);
 

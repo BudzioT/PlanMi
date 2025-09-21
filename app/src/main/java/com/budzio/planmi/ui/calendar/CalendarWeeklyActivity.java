@@ -209,7 +209,6 @@ public class CalendarWeeklyActivity extends AppCompatActivity {
         TextView timeView = taskView.findViewById(R.id.weekly_task_time);
 
         titleView.setText(task.getTitle());
-
         taskView.setTag("activity");
 
         String timeText = "";
@@ -222,16 +221,16 @@ public class CalendarWeeklyActivity extends AppCompatActivity {
         timeView.setText(timeText);
 
         int startHour = task.getStartTime().getHour();
-        int columnSpan = 2;
+        int columnSpan = 1;
         if (task.getEndTime() != null) {
-            int duration = task.getEndTime().getHour() - startHour;
+            int duration = task.getEndTime().getHour() - startHour + 1;
             columnSpan = Math.max(1, duration);
         }
 
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         params.rowSpec = GridLayout.spec(row);
         params.columnSpec = GridLayout.spec(startHour, columnSpan);
-        params.width = 140 * columnSpan;
+        params.width = (int) (70 * columnSpan * getResources().getDisplayMetrics().density);
         params.height = GridLayout.LayoutParams.WRAP_CONTENT;
         params.setMargins(4, 4, 4, 4);
 
