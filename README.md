@@ -1,6 +1,7 @@
 # PlanMi
 
 It's just a basic mobile app, my first one ever so I haven't had any other ideas. I just wanted to learn how to make mobile apps</br>
+You can grab it at this [link](https://www.upload-apk.com/rD3ym2Tp4ibTdY3) </br>
 </br>
 Currently only the calendar works from the main menu - the notes redirect to the today's day, but I want them to have a different function later. It has 3 layouts within itself and tasks from today are placed into the title screen too.</br>
 Tasks and notes are saved, so even leaving the application keeps them safe.</br>
